@@ -8,31 +8,43 @@ import heartOutilneIcon from '../../assets/images/icons/heart-outline.png';
 import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
-function TeacherItem() {
+export interface Teacher {
+id: number;
+avatar: string;
+bio: string;
+cost: number;
+name: string;
+subject: string;
+whatsapp: string;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
   return (
    <View style={styles.container}>
      <View style={styles.profile}>
        <Image 
        style={styles.avatar}
-       source={{uri: 'https://github.com/diego3g.png'}}
+       source={{uri: teacher.avatar}}
        />
 
        <View style={styles.profileInfo}>
-         <Text style={styles.name}>Diego Fernandes</Text>
-         <Text style={styles.subject}>Quimica</Text>
+         <Text style={styles.name}>{teacher.name}</Text>
+         <Text style={styles.subject}>{teacher.subject}</Text>
        </View>
      </View>
 
     <Text style={styles.bio}>
-      Entusiasta das melhores tecnologias relacionadas ao desenvolvimento Mobile
-      {'\n'} {'\n'}
-      Apaixonado pelo react e pelo flutter!!
+      {teacher.bio}
     </Text>
 
     <View style={styles.footer}>
       <Text style={styles.price}>
         Preço/hora {'  '}
-        <Text style={styles.priceValue}>R$ 20,00</Text>
+        <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
       </Text>
 
       <View style={styles.buttonContainer}>
